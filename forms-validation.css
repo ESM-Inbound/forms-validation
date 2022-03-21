@@ -1,32 +1,32 @@
-ul.hs-error-msgs li label.hs-error-msg {
+body ul.hs-error-msgs li label.hs-error-msg {
 	color: red;
 	display: flex;
 	margin-top: 0;
 	padding: 3px 10px 5px;
 }
-form ul.hs-error-msgs>li {
+body form ul.hs-error-msgs>li {
 	display: block;
 	margin: 0;
 	padding: 0;
 	width: 100%;
 	background: #edd4cf;
 }
-form ul.hs-error-msgs>li span {
+body form ul.hs-error-msgs>li span {
 	content: "\26A0";
 	margin-right: 5px;
 }
 
-form .hs-input.invalid.error {
+body form .hs-input.invalid.error {
     border-color: #ef6b51;
 }
 
-.hs_error_rollup label.hs-main-font-element {
+body .hs_error_rollup label.hs-main-font-element {
 	background: red;
 	color: #fff;
 	display: flex;
 	margin-top: 0;
 	padding: 3px 10px 5px;
 }
-form .hs_checkbox_field .inputs-list>li, form .hs_checkbox_field .inputs-list>li {
+body form .hs_checkbox_field .inputs-list>li, body form .hs_checkbox_field .inputs-list>li {
     margin-bottom: 0;
 }
