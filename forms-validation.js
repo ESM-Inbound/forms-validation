@@ -9,8 +9,7 @@ window.addEventListener('message', event => {
 		}
 
 		let input = document.querySelectorAll('input'), 
-				submit = document.querySelector('form input[type=submit]'),
-				eventt = new Event('change');
+				submit = document.querySelector('form input[type=submit]')
 
 		function globalInputsOnChangeHandler(){
 			for (var i = 0; i < input.length; i += 1) {
@@ -37,11 +36,16 @@ window.addEventListener('message', event => {
 			globalInputsOnChangeHandler()
 			console.log('Attributes changed!');
 		});
-		var target = document.querySelector('input');
-				observer.observe(target, {
-				attributes: true
-		});
-		
+
+		for (var i = 0; i < input.length; i += 1) {
+			let typeCheck = input[i].getAttribute('type') == 'checkbox' ? true : input[i].hasAttribute('required')
+			if( error_messages.hasOwnProperty(input[i].getAttribute('name')) && typeCheck ){
+				observer.observe(input[i], {
+					attributes: true
+				})
+			}  
+		}
+
 		submit.addEventListener('click', globalInputsOnChangeHandler)
 
 	}
