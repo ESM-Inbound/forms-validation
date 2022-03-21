@@ -21,8 +21,8 @@ form .hs-input.invalid.error {
 }
 
 .hs_error_rollup label.hs-main-font-element {
-	background: #edd4cf;
-	color: red;
+	background: red;
+	color: #fff;
 	display: flex;
 	margin-top: 0;
 	padding: 3px 10px 5px;
