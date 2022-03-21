@@ -40,12 +40,12 @@ window.addEventListener('message', event => {
 		for (var i = 0; i < input.length; i += 1) {
 			let typeCheck = input[i].getAttribute('type') == 'checkbox' ? true : input[i].hasAttribute('required')
 			if( error_messages.hasOwnProperty(input[i].getAttribute('name')) && typeCheck ){
-				observer.observe(input[i], {
+				var target = document.querySelector(`form input[name=${input[i].getAttribute('name')}]`);
+				observer.observe(target, {
 					attributes: true
 				})
 			}  
 		}
-
 		submit.addEventListener('click', globalInputsOnChangeHandler)
 
 	}
