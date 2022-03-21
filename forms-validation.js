@@ -12,32 +12,7 @@ window.addEventListener('message', event => {
 				submit = document.querySelector('form input[type=submit]'),
 				eventt = new Event('change');
 
-		function onChangeHandler(event) {
-			if (!event) event = window.event;
-			var changedElement = event.srcElement || this;
-			setTimeout(function(){  
-				if( changedElement.classList.contains('invalid') || changedElement.classList.contains('error') || changedElement.getAttribute('type') == 'checkbox' ){
-					
-					changedElement.dispatchEvent(eventt);
-					let parentElement = changedElement.closest('.field');
-					let errorDiv = parentElement.querySelector('.hs-error-msg')
-					if(errorDiv) errorDiv.innerHTML = `<span>&#9888;</span> ${error_messages[changedElement.getAttribute('name')]}`
-				}
-			}, 200)
-		}
-
-		$(".invalid").on('show').trigger('onChangeHandler');
-
-		for (var i = 0; i < input.length; i += 1) {
-			let typeCheck = input[i].getAttribute('type') == 'checkbox' ? true : input[i].hasAttribute('required')
-			if( error_messages.hasOwnProperty(input[i].getAttribute('name')) && typeCheck ){
-				['keyup', 'mouseleave', 'click','mouseout', 'onfocusout'].forEach(function(e) {
-					input[i].addEventListener(e, onChangeHandler)
-				})
-			}  
-		}
-
-		submit.addEventListener('click', function(e) {
+		function globalInputsOnChangeHandler(){
 			for (var i = 0; i < input.length; i += 1) {
 				let typeCheck = input[i].getAttribute('type') == 'checkbox' ? true : input[i].hasAttribute('required')
 				if( error_messages.hasOwnProperty(input[i].getAttribute('name')) && typeCheck ){
@@ -56,7 +31,18 @@ window.addEventListener('message', event => {
 					}, 50)
 				}  
 			}
-		})
+		}
+
+		var observer = new MutationObserver(function(e) {
+			globalInputsOnChangeHandler()
+			console.log('Attributes changed!');
+		});
+		var target = document.querySelector('input');
+				observer.observe(target, {
+				attributes: true
+		});
+		
+		submit.addEventListener('click', globalInputsOnChangeHandler)
 
 	}
 })
