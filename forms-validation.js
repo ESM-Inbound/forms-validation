@@ -18,7 +18,7 @@ window.addEventListener('message', event => {
 			setTimeout(function(){  
 				if( changedElement.classList.contains('invalid') || changedElement.classList.contains('error') || changedElement.getAttribute('type') == 'checkbox' ){
 					
-					element.dispatchEvent(eventt);
+					changedElement.dispatchEvent(eventt);
 					let parentElement = changedElement.closest('.field');
 					let errorDiv = parentElement.querySelector('.hs-error-msg')
 					if(errorDiv) errorDiv.innerHTML = `<span>&#9888;</span> ${error_messages[changedElement.getAttribute('name')]}`
@@ -26,7 +26,7 @@ window.addEventListener('message', event => {
 			}, 200)
 		}
 
-		
+		$(".invalid").on('show').trigger('onChangeHandler');
 
 		for (var i = 0; i < input.length; i += 1) {
 			let typeCheck = input[i].getAttribute('type') == 'checkbox' ? true : input[i].hasAttribute('required')
