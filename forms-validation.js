@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function(event) {
+$(window).load(function(){  
 
 	window.addEventListener('message', event => {
 		if(event.data.type === 'hsFormCallback' && event.data.eventName === 'onFormReady') {
@@ -57,5 +57,5 @@ document.addEventListener('DOMContentLoaded', function(event) {
 
 		}
 	})
-	
+
 })
