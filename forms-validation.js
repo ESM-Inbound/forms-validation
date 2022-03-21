@@ -9,19 +9,24 @@ window.addEventListener('message', event => {
 		}
 
 		let input = document.querySelectorAll('input'), 
-				submit = document.querySelector('form input[type=submit]')
+				submit = document.querySelector('form input[type=submit]'),
+				eventt = new Event('change');
 
 		function onChangeHandler(event) {
 			if (!event) event = window.event;
 			var changedElement = event.srcElement || this;
 			setTimeout(function(){  
 				if( changedElement.classList.contains('invalid') || changedElement.classList.contains('error') || changedElement.getAttribute('type') == 'checkbox' ){
+					
+					element.dispatchEvent(eventt);
 					let parentElement = changedElement.closest('.field');
 					let errorDiv = parentElement.querySelector('.hs-error-msg')
 					if(errorDiv) errorDiv.innerHTML = `<span>&#9888;</span> ${error_messages[changedElement.getAttribute('name')]}`
 				}
-			}, 100)
+			}, 200)
 		}
+
+		
 
 		for (var i = 0; i < input.length; i += 1) {
 			let typeCheck = input[i].getAttribute('type') == 'checkbox' ? true : input[i].hasAttribute('required')
