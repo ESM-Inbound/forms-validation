@@ -34,7 +34,6 @@ window.addEventListener('message', event => {
 
 		var observer = new MutationObserver(function(e) {
 			globalInputsOnChangeHandler()
-			console.log('Attributes changed!');
 		});
 
 		for (var i = 0; i < input.length; i += 1) {
@@ -45,6 +44,11 @@ window.addEventListener('message', event => {
 					attributes: true
 				})
 			}  
+			if( input[i].getAttribute('type') == 'checkbox' ){
+				['keyup', 'mouseleave', 'click','mouseout', 'onfocusout'].forEach(function(e) {
+					input[i].addEventListener(e, globalInputsOnChangeHandler)
+				})
+			} 
 		}
 		submit.addEventListener('click', globalInputsOnChangeHandler)
 
