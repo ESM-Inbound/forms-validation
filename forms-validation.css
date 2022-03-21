@@ -2,6 +2,7 @@ body ul.hs-error-msgs li label.hs-error-msg {
 	color: red;
 	display: flex;
 	margin-top: 0;
+	font-size: .75rem;
 	padding: 3px 10px 5px;
 }
 body form ul.hs-error-msgs>li {
@@ -14,6 +15,7 @@ body form ul.hs-error-msgs>li {
 body form ul.hs-error-msgs>li span {
 	content: "\26A0";
 	margin-right: 5px;
+	font-size: .75rem;
 }
 
 body form .hs-input.invalid.error {
