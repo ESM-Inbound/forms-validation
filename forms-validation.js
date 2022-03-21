@@ -1,5 +1,7 @@
-$(window).load(function(){  
-	
+document.addEventListener('DOMContentLoaded', function(vc) {
+
+	window.addEventListener('message', event => {
+		if(event.data.type === 'hsFormCallback' && event.data.eventName === 'onFormReady') {
 			let error_messages = {
 				firstname: 'Please provide a name',
 				email: 'Please provide a properly formatted email address',
@@ -53,4 +55,7 @@ $(window).load(function(){
 				}
 			})
 
+		}
+	})
+	
 })
